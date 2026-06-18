@@ -2,8 +2,7 @@
 // products_screen.dart  — MODIFIÉ
 // Ajout : icône boutique 🏪 sur chaque carte produit →
 //         ouvre SellerShopScreen (produits + localisation sans numéro)
-// ══════════════════════════════════════════════════════════════
-
+// ══════════════════════════════════════════════════════════
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';

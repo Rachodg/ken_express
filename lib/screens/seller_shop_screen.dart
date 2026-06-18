@@ -1,12 +1,3 @@
-// ══════════════════════════════════════════════════════════════
-// lib/screens/seller_shop_screen.dart
-// Page boutique d'un vendeur vue par le CLIENT :
-//  - Photo + nom + description (SANS numéro de téléphone)
-//  - Localisation sur carte (bouton Google Maps)
-//  - Grille de tous ses produits actifs
-//  - Bouton "Ajouter au panier" sur chaque produit
-// ══════════════════════════════════════════════════════════════
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';

@@ -1,12 +1,3 @@
-// ══════════════════════════════════════════════════════════════
-// commandes_recues_screen.dart
-// CORRECTION : Affichage enrichi des produits commandés
-//  - Photo du produit visible sur chaque ligne
-//  - Nom, quantité, prix unitaire ET sous-total bien distincts
-//  - Section produits plus lisible avec séparateurs
-//  - Info client (adresse de livraison) bien mise en évidence
-// ══════════════════════════════════════════════════════════════
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -1,8 +1,3 @@
-// ══════════════════════════════════════════════════════════════
-// lib/screens/admin/admin_pubs_screen.dart
-// Admin : liste des demandes de pub + activation / refus
-// ══════════════════════════════════════════════════════════════
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../services/pub_service.dart';

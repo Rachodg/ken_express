@@ -1,9 +1,3 @@
-// ══════════════════════════════════════════════════════════════
-// lib/services/order_service.dart
-// CORRECTION : notification vendeur affiche le bon montantVendeur
-// et les champs commission/montantVendeur sont toujours enregistrés
-// ══════════════════════════════════════════════════════════════
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show debugPrint;
 import '../models/cart_item.dart';

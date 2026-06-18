@@ -1,10 +1,3 @@
-// ══════════════════════════════════════════════════════════════
-// lib/screens/admin/admin_livraisons_tab.dart
-// MODIFICATIONS :
-//  1. Livraison fixée à 1 000 F dans le message WhatsApp
-//  2. Tri : non lus en premier (date desc), lus en bas (date desc)
-// ══════════════════════════════════════════════════════════════
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
