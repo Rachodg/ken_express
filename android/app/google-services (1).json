@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "573448307022",
+    "project_id": "kenexpress-883d3",
+    "storage_bucket": "kenexpress-883d3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573448307022:android:c8dd6bf7dc1f399eb39e1f",
+        "android_client_info": {
+          "package_name": "com.example.ken_express"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1uE8oFGM8YN8VfUtCzyhpWaU6_0dMPhE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,47 @@
+name: ken_express
+description: Application de vente, achat et livraison.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # Firebase (versions compatibles ensemble)
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  cloud_firestore: ^5.4.4
+  firebase_messaging: ^15.1.3
+
+  # Réseau et images
+  http: ^1.2.0
+  image_picker: ^1.1.2
+  cached_network_image: ^3.3.1  # version antérieure pour éviter le conflit web
+
+  # Notifications
+  flutter_local_notifications: ^17.2.4
+
+  # Dates et heures
+  intl: ^0.19.0
+
+  # Géolocalisation (vendeur)
+  geolocator: ^13.0.2
+
+  # Appels téléphoniques et liens externes (carte, etc.)
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
