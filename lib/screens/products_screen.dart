@@ -1,8 +1,10 @@
 // ══════════════════════════════════════════════════════════════
-// products_screen.dart  — MODIFIÉ
+// lib/screens/products_screen.dart  — MODIFIÉ
+// Ajout : PubCarousel affiché en haut de l'écran boutique client
 // Ajout : icône boutique 🏪 sur chaque carte produit →
 //         ouvre SellerShopScreen (produits + localisation sans numéro)
-// ══════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +16,8 @@ import '../services/message_service.dart';
 import '../main.dart';
 import 'chat_screen.dart';
 import 'product_detail_screen.dart';
-import 'seller_shop_screen.dart'; // ← AJOUT
+import 'seller_shop_screen.dart';
+import '../widgets/pub_carousel.dart'; // ← AJOUT : carrousel de publicités
 
 class ProductsScreen extends StatefulWidget {
   final CartService cartService;
@@ -192,7 +195,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   // ════════════════════════════════════════════
-  // VUE NORMALE
+  // VUE NORMALE — avec PubCarousel en haut ← MODIFIÉ
   // ════════════════════════════════════════════
   Widget _buildNormalView() {
     return StreamBuilder<List<Product>>(
@@ -204,34 +207,58 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   color: AppColors.clientPrimary));
         }
         final products = _filtrer(snap.data ?? []);
+
         if (products.isEmpty) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.inventory_2_outlined,
-                    size: 60, color: Colors.grey.shade400),
-                const SizedBox(height: 12),
-                Text(
-                  _searchQuery.isNotEmpty
-                      ? 'Aucun résultat pour "$_searchQuery"'
-                      : 'Aucun produit disponible',
-                  style: const TextStyle(color: Colors.grey),
+          return ListView(
+            children: [
+              // ── Carrousel publicités (même si pas de produits) ──
+              PubCarousel(cartService: widget.cartService),
+
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 60),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.inventory_2_outlined,
+                          size: 60, color: Colors.grey.shade400),
+                      const SizedBox(height: 12),
+                      Text(
+                        _searchQuery.isNotEmpty
+                            ? 'Aucun résultat pour "$_searchQuery"'
+                            : 'Aucun produit disponible',
+                        style: const TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         }
-        return GridView.builder(
-          padding: const EdgeInsets.all(12),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 0.65,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          itemCount: products.length,
-          itemBuilder: (_, i) => _productCard(products[i]),
+
+        // ListView parent pour combiner le carousel + la grille
+        return ListView(
+          children: [
+            // ── Carrousel de publicités ──
+            PubCarousel(cartService: widget.cartService), // ← AJOUT
+
+            // ── Grille de produits ──
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(12),
+              gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.65,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemCount: products.length,
+              itemBuilder: (_, i) => _productCard(products[i]),
+            ),
+          ],
         );
       },
     );
@@ -325,7 +352,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   // ════════════════════════════════════════════
-  // CARTE NORMALE — avec icône boutique ajoutée
+  // CARTE NORMALE — avec icône boutique
   // ════════════════════════════════════════════
   Widget _productCard(Product product) {
     return Card(
@@ -526,7 +553,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         ),
                         const SizedBox(width: 4),
 
-                        // ── BOUTON BOUTIQUE (NOUVEAU) ──
+                        // Bouton Boutique
                         GestureDetector(
                           behavior: HitTestBehavior.opaque,
                           onTap: () {
@@ -586,7 +613,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   }
 
   // ════════════════════════════════════════════
-  // CARTE PROMO — avec icône boutique ajoutée
+  // CARTE PROMO — avec icône boutique
   // ════════════════════════════════════════════
   Widget _promoCard(Product product) {
     final economie = product.price - product.prixActuel;
